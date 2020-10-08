@@ -20,9 +20,9 @@ counter=1
 while True:
     success, frame = cam.read()
     if success == True:
-        gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(gray , 1.3, 5)  
-        for (x,y,w,h) in faces:
+        #gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+        #faces = face_cascade.detectMultiScale(gray , 1.3, 5)  
+        for (x,y,w,h) in frame:
             frame = cv2.rectangle(frame,(x,y),(x + w, y + h),(0,255,0),2)
             face=F1(frame)
             
