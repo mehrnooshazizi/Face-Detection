@@ -17,7 +17,8 @@ while True:
         faces = face_cascade.detectMultiScale(gray , 1.3, 5)  
         for (x,y,w,h) in faces:
             frame = cv2.rectangle(frame,(x,y),(x + w, y + h),(0,255,0),2)
-            cv2.imwrite(f'G:/mehrnoosh/face{counter}.jpg',frame)
+            faces = cv2.resize(frame,(200,200))
+            cv2.imwrite(f'G:/mehrnoosh/face{counter}.jpg',faces)
             gray2 = gray[y:y+h,x:x+w]
             eyes = face_eye.detectMultiScale(gray2 , 1.3, 6) 
             cv2.putText(frame,"Human",(x,y-10), cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),2)
