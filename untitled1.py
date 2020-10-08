@@ -5,9 +5,16 @@ Created on Thu Oct  8 19:48:56 2020
 @author: Azizi
 """
 import cv2
-#import numpy as np
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 face_eye = cv2.CascadeClassifier('haarcascade_eye.xml')
+def F1(img):
+    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray,1.1,5)
+    if(faces == ()):
+        return ()
+    (x,y,w,h) = faces[0]
+    cropped_image = gray[y:y + h, x:x + w]
+    return cropped_image
 cam = cv2.VideoCapture(0)
 counter=1
 while True:
@@ -17,6 +24,8 @@ while True:
         faces = face_cascade.detectMultiScale(gray , 1.3, 5)  
         for (x,y,w,h) in faces:
             frame = cv2.rectangle(frame,(x,y),(x + w, y + h),(0,255,0),2)
+            face=F1(frame)
+            
             faces = cv2.resize(frame,(200,200))
             cv2.imwrite(f'G:/mehrnoosh/face{counter}.jpg',faces)
             gray2 = gray[y:y+h,x:x+w]
