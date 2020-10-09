@@ -24,11 +24,12 @@ while True:
 
             eyes = face_eye.detectMultiScale(croped_frame , 1.3, 6)             
             for (xe,ye,we,he) in eyes:
-                frame = cv2.rectangle(croped_frame,(xe+x,ye+y),(xe + we+x, ye + he+y),(0,0,255),2)
-                croped_frame1 = resized_frame[y: y + h, x: x + w]
-                cv2.imwrite(f'G:/mehrnoosh/eye{counter}.jpg',frame)
+                frame2 = cv2.rectangle(newframe,(xe+x,ye+y),(xe + we+x, ye + he+y),(0,0,255),2)
+                croped_frame1 = resized_frame[y: ye + he+y, x: xe + we+x]
+                cv2.imwrite(f'G:/mehrnoosh/eye{counter}.jpg',croped_frame1)
                 counter+=1
             cv2.imshow('myimage', frame)
+            cv2.imshow('myeye', croped_frame1)
 
     if cv2.waitKey(1) == 27 or counter==101:
         break
